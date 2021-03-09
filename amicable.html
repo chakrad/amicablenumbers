@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Amicable Numbers</title>
+<script language = "javascript">
+function amicCheck()
+{
+	num1 = document.getElementById('number1').value;
+	num2 = document.getElementById('number2').value;
+	
+	var factors1 = findFactors(num1);
+	var factors2 = findFactors(num2);
+	
+	factors1sum = sumFactors(factors1);
+	factors2sum = sumFactors(factors2);
+	
+	output1 = "Factors of " + num1 + " are: ";
+	for(i = 0 ; i < factors1.length ; i++ )
+		output1 += (factors1[i] + " ");
+	output2 = "Factors of " + num2 + " are: ";
+	for(i = 0 ; i < factors2.length ; i++ )
+		output2 += (factors2[i] + " ");
+	alert(output1 + "\n" + output2);
+	
+	isAmic = (num1 == factors2sum) && (num2 == factors1sum);
+	output = "<br>The numbers: " + num1 + " and " + num2 + " are ";
+	if(isAmic)
+	{
+		output += " amicable";
+	}
+	else
+	{
+		output += " not amicable";
+	}
+	document.getElementById("result").innerHTML = output;
+	
+}
+function findFactors(x)
+{
+	var factors = [];
+	for( i = 1 ; i < x ; i++ )
+	{
+		if( x % i == 0)
+			factors.push(i);
+	}
+	return factors;
+}
+function sumFactors(factorList)
+{
+	sum = 0;
+	for(i = 0 ; i < factorList.length ; i++ )
+		sum += factorList[i];
+	return sum;
+}
+</script>
+<style>
+#result
+{
+	color: #0013FF;
+	font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+	
+	<h1 style="color:red;">Amicable Number Finder:</h1>
+	
+	<form>
+		First Number: <input type 'text' id='number1'><br />
+		Second Number: <input type= 'text' id='number2'><br />
+		<input type ='button' value = 'Submit' name = 'btn' onclick = 'amicCheck()'><br />
+	</form>
+	
+	
+	
+	<div id="result"></div>
+</body>
+</html>
